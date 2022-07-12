@@ -1,0 +1,491 @@
+{% include 'graph/header.html' %}
+    	{% load static %}
+<head>
+
+	<!-- Required meta tags -->
+
+	<link href="{% static 'graph/plugins/datetimepicker/css/classic.css' %}" rel="stylesheet" />
+	<link href="{% static 'graph/plugins/datetimepicker/css/classic.time.css' %}" rel="stylesheet" />
+	<link href="{% static 'graph/plugins/datetimepicker/css/classic.date.css' %}" rel="stylesheet" />
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'graph/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.min.css' %}">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+</head>
+
+		<!--end header-->
+
+		<!--navigation-->
+	<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+
+
+						<div class="row">
+						<div class="col-xl-9 mx-auto">
+							<div class="card">
+								<div class="card-body">
+									<div class="mb-3">
+										<label class="form-label">Recherche par date</label>
+										<input type="text" class="form-control datepicker" />
+										<button type="button" class="btn btn-info m-1 px-5 radius-30">Rechercher</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						</div>
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+						<div class="breadcrumb-title pe-3">Analyse du jour</div>
+						<div class="ps-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Hors-PROD</li>
+								</ol>
+
+							</nav>
+						</div>
+						<div class="ms-auto">
+						<button type="button" class="btn btn-outline-info m-1 radius-30 px-5"><i class='bx bx-refresh me-1'></i>Mettre à jour la dashboard</button>
+							</div>
+						<div class="ms-auto">
+							<button type="button" class="btn btn-outline-dark m-1 px-5"><i class='bx bx-cloud-upload me-1'></i>Telecharger les données du jour</button>
+						</div>
+					</div>
+
+					<!--end breadcrumb-->
+					<script>
+var client = new XMLHttpRequest();
+client.open('GET', '/../static/graph/plugins/highcharts/js/myfileday.txt');
+client.onreadystatechange = function() {
+  console.log('Data : ', client);
+  console.log();
+  var item = [];
+  console.log('mon xml', xml);
+  item.push({  key: "key", value: "client" });
+  console.log('mon tab est', item);
+}
+client.send();
+					</script>
+
+			<div class="card radius-15 overflow-hidden">
+						<div class="card-header border-bottom-0">
+							<div class="d-flex align-items-center">
+								<div>
+									<h5 class="mb-0">Na du : 11/05/2022</h5>
+								</div>
+
+							</div>
+						</div>
+						<div class="card-body p-0">
+							<div class="table-responsive">
+								<table class="table mb-0">
+									<thead>
+										<tr>
+
+											<th>Nom du job</th>
+											<th>Date de début</th>
+											<th>Date de fin</th>
+											<th>Temps d'exécution</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+
+											<td>ISUTI00Y-ISU_MDR_AF_PROC_PART</td>
+											<td>11/05/2022  04:32:18</td>
+											<td>11/05/2022  05:49:44</td>
+											<td>01:17:26</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+										<tr>
+
+											<td>ISUTI018-ISU_PROG_MAJ_BP</td>
+											<td>11/05/2022  05:01:53</td>
+											<td>11/05/2022  05:05:24</td>
+											<td>00:03:31</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+										<tr>
+
+											<td>ISUTI01E-FICA_MARQ_CREAN_DOU</td>
+											<td>11/05/2022  06:10:05</td>
+											<td>11/05/2022  06:19:48</td>
+											<td>00:09:43</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+										<tr>
+
+											<td>ISUTI01F-FICA_TRAN_CREAN_DOU</td>
+											<td>11/05/2022  06:20:13</td>
+											<td>11/05/2022  06:28:55</td>
+											<td>00:08:42</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-danger btn-block radius-30">KO</a>
+											</td>
+										</tr>
+										<tr>
+
+											<td>ISUTI025-ISU_ITF_GINKO14</td>
+											<td>11/05/2022  02:26:20</td>
+											<td>11/05/2022  04:32:36</td>
+											<td>00:03:15</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+										<tr>
+
+											<td>ISUTI01Z-ISU_PROG_AL_DFKKKOBW</td>
+											<td>11/05/2022  06:06:00</td>
+											<td>11/05/2022  06:09:15</td>
+											<td>02:06:16</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+									<tr>
+
+											<td>ISUTI00Y-ISU_MDR_AF_PROC_PART</td>
+											<td>11/05/2022  04:32:18</td>
+											<td>11/05/2022  05:49:44</td>
+											<td>01:17:26</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+									<tr>
+
+											<td>ISUTI056-ISU_HIST_CONSO_ANN</td>
+											<td>11/05/2022  09:52:13</td>
+											<td>11/05/2022  15:50:06</td>
+											<td>06:02:07</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+									<tr>
+
+											<td>ISUTI66L-ISU_ANONYM_IBAN</td>
+											<td>11/05/2022  07:10:56</td>
+											<td>11/05/2022  15:33:52</td>
+											<td>07:17:04</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-danger btn-block radius-30">KO</a>
+											</td>
+										</tr>
+									<tr>
+
+											<td>ISUTI62T-ISU_ITF_G14_GAZ</td>
+											<td>11/05/2022  04:33:14</td>
+											<td>11/05/2022  04:33:15</td>
+											<td>00:00:01</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+									<tr>
+
+											<td>ISUTI50Q-ISU_PRE_ANLYSE_NA</td>
+											<td>11/05/2022  01:00:02</td>
+											<td>11/05/2022  01:00:03</td>
+											<td>00:00:01</td>
+											<td><a href="javascript:;" class="btn btn-sm btn-light-success btn-block radius-30">OK</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+				<hr/>
+				<nav aria-label="Page navigation example">
+								<ul class="pagination round-pagination justify-content-center">
+									<li class="page-item"><a class="page-link" href="javascript:;">Previous</a>
+									</li>
+									<li class="page-item active"><a class="page-link" href="javascript:;javascript:;">1</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="javascript:;">2</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="javascript:;">3</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="javascript:;">Next</a>
+									</li>
+								</ul>
+							</nav>
+
+			</div>
+					<!--end row-->
+
+					<!--end row-->
+
+					<!--end row-->
+
+					<!--end row-->
+
+					<!--end row-->
+
+
+
+				<div class="row">
+					<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart15"></div>
+								</div>
+							</div>
+						</div>
+					<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart7"></div>
+								</div>
+							</div>
+						</div>
+					<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart9"></div>
+								</div>
+							</div>
+						</div>
+
+
+				</div>
+		<script>
+function myFunction() {
+  var x = document.getElementById("hiden");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+}
+window.onload = myFunction;
+</script>
+
+
+				<div id="hiden">
+					<div class="row">
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart13"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart1"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart2"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart3"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart4"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart5"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart6"></div>
+								</div>
+							</div>
+						</div>
+
+					<!--end row-->
+					<div class="row">
+
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart8"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart11"></div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart12"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart14"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart10"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<!--end row-->
+
+
+
+					<!--end row-->
+
+
+			<!--end page-content-wrapper-->
+
+		<!--end page-wrapper-->
+		<!--start overlay-->
+		<div class="overlay toggle-btn-mobile"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<!--footer -->
+		<div class="footer">
+			<p class="mb-0">Run Hors-PROD @2022 | Developed By : <a>target="_blank">Atos</a>
+			</p>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- end wrapper -->
+	<!--start switcher-->
+	<div class="switcher-body">
+		<button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bx bx-cog bx-spin"></i></button>
+		<div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">
+		  <div class="offcanvas-header border-bottom">
+			<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+		  </div>
+		  <div class="offcanvas-body">
+			<h6 class="mb-0">Theme Variation</h6>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="lightmode" value="option1" checked>
+			  <label class="form-check-label" for="lightmode">Light</label>
+			</div>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="darkmode" value="option2">
+			  <label class="form-check-label" for="darkmode">Dark</label>
+			</div>
+			  <hr>
+			 <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ColorLessIcons" value="option3">
+				<label class="form-check-label" for="ColorLessIcons">Color Less Icons</label>
+			  </div>
+		  </div>
+		</div>
+	   </div>
+	   <!--end switcher-->
+	<!-- JavaScript -->
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'graph/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!--plugins-->
+	<script src="{% static 'graph/js/jquery.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!-- Vector map JavaScript -->
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-in-mill.js' %}"></script>
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-us-aea-en.js' %}"></script>
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-uk-mill-en.js' %}"></script>
+	<script src="{% static 'graph/plugins/vectormap/jquery-jvectormap-au-mill.js' %}"></script>
+	<script src="{% static 'graph/js/index.js' %}"></script>
+
+
+	<script src="{% static 'graph/plugins/chartjs/js/Chart.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/chartjs/js/chartjs-custom.js' %}"></script>
+	<!-- App JS -->
+	<script src="{% static 'graph/js/app.js' %}"></script>
+	<script>
+		new PerfectScrollbar('.dashboard-social-list');
+		new PerfectScrollbar('.dashboard-top-countries');
+	</script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-more.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/variable-pie.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/solid-gauge.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-3d.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/cylinder.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/funnel3d.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/exporting.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/export-data.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/accessibility.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-custom.script.js' %}"></script>
+					<script src="{% static 'graph/plugins/datetimepicker/js/legacy.js' %}"></script>
+	<script src="{% static 'graph/plugins/datetimepicker/js/picker.js' %}"></script>
+	<script src="{% static 'graph/plugins/datetimepicker/js/picker.time.js' %}"></script>
+	<script src="{% static 'graph/plugins/datetimepicker/js/picker.date.js' %}"></script>
+	<script src="{% static 'graph/plugins/bootstrap-material-datetimepicker/js/moment.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.min.js' %}"></script>
+	<script>
+		$('.datepicker').pickadate({
+			selectMonths: true,
+	        selectYears: true
+		}),
+		$('.timepicker').pickatime()
+	</script>
+	<script>
+		$(function () {
+			$('#date-time').bootstrapMaterialDatePicker({
+				format: 'YYYY-MM-DD HH:mm'
+			});
+			$('#date').bootstrapMaterialDatePicker({
+				time: false
+			});
+			$('#time').bootstrapMaterialDatePicker({
+				date: false,
+				format: 'HH:mm'
+			});
+		});
+	</script>
+</body>
+
+
+<!-- Mirrored from codervent.com/syndash/demo/horizontal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 31 May 2022 08:10:53 GMT -->
+</html>
