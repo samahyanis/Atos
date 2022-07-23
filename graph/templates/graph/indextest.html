@@ -344,6 +344,20 @@ window.onload = myFunction;
 
 	<script src="{% static 'graph/plugins/chartjs/js/Chart.min.js' %}"></script>
 	<script src="{% static 'graph/plugins/chartjs/js/chartjs-custom.js' %}"></script>
+<script>
+
+    $.ajax({
+    type: "GET",
+     url: "http://127.0.0.1:8000/graph/graph/index6",
+ success: function( response ) {
+        console.log(response)
+        }
+})
+
+
+
+	</script>
+
 </body>
 
 

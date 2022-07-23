@@ -520,7 +520,9 @@ $(function () {
 		}]
 	});
 	// chart7
-	Highcharts.chart('chart7', {
+	//Highcharts.chart('chart7', {
+	var categoriesse = []
+	var option7 = {
 		chart: {
 			type: 'bar',
 			styledMode: true
@@ -535,23 +537,26 @@ $(function () {
 			text: 'Source: SAP'
 		},
 		xAxis: {
-			categories: ['ISUTI056-ISU_HIST_CONSO_ANN', 'ISUTI086-ISU_MDR_ECHE1_DETEC', 'ISUTI66K-ISU_IDENT_IBAN_ANONYM', 'ISUTI502-FICA_TRAN_PIEC_FIGL', 'ISUTI042B-ISU_OPTI_TURPE','ISUTI086-ISU_MDR_ECHE1_DETEC','ISUTI495-ISU_CALCUL_FACTURAT_ES','ISUTI66L-ISU_ANONYM_IBAN','NDEBJCHG','NDATE001-ISU_MAJ_ZDATE_NA'],
+			categories: categoriesse,
 			title: {
 				text: null
 			}
+
 		},
 		yAxis: {
+		    type: 'datetime',
 			min: 0,
 			title: {
-				text: 'Durée (s)',
+				text: 'Durée (H)',
 				align: 'high'
 			},
 			labels: {
-				overflow: 'justify'
+				format: '{value: %H:%M:%S}'
 			}
+
 		},
 		tooltip: {
-			valueSuffix: ' millions'
+			valueSuffix: ''
 		},
 		plotOptions: {
 			bar: {
@@ -576,18 +581,63 @@ $(function () {
 		},
 		series: [{
 			name: 'Na du Jour',
-			data: [3561, 31, 635, 203, 2, 203, 203, 203, 203, 203]
+			data: []
 		}, {
 			name: 'Na j-1',
-			data: [133, 156, 947, 408, 6, 203, 203, 203, 203, 203]
+			data: []
 		}, {
 			name: 'Na j-2',
-			data: [814, 841, 3714, 727, 31, 203, 203, 203, 203, 203]
+			data: []
 		}, {
 			name: 'Na j-3',
-			data: [1216, 1001, 4436, 738, 40, 203, 203, 203, 203, 203]
+			data: []
 		}]
-	});
+	};
+
+
+async function prettyGraph7() {
+
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/graph/graph/index10",
+    async : true,
+    success: function( response ) {
+            let dataParsed = JSON.parse(response)
+            let dataObject = Object.values(dataParsed[0])[0]
+            var datase77 = []
+            var datase88 = []
+            var datase98 = []
+            var datase99 = []
+            $.each(dataParsed, function(key, val) {
+               let jobName2 = Object.keys(val)[0]
+               let durationJob2 = Object.values(val)[0]
+               categoriesse.push(jobName2.toString())
+               datase77.push(parseInt(durationJob2[0]))
+               datase88.push(parseInt(durationJob2[1]))
+               datase98.push(parseInt(durationJob2[2]))
+               datase99.push(parseInt(durationJob2[3]))
+               option7.series[0].data = datase77
+               option7.series[1].data = datase88
+               option7.series[2].data = datase98
+               option7.series[3].data = datase99
+            })
+    }
+    })
+    return res;
+}
+async function displayGraph7() {
+        await prettyGraph7()
+}
+
+// display graph async execution with then
+displayGraph7().then(() => {
+          Highcharts.chart('chart7', option7);
+    })
+
+
+
+
+
 	// chart 8
 	Highcharts.chart('chart8', {
 		chart: {
@@ -986,7 +1036,8 @@ $(function () {
 		},]
 	});
 	// chart 12
-	Highcharts.chart('chart12', {
+
+	var optionJob = {
 		chart: {
 			styledMode: true
 		},
@@ -997,8 +1048,9 @@ $(function () {
 			text: 'heure de debut et de fin des Jobs'
 		},
 		xAxis: {
-			categories: ['ISUTI056-ISU_HIST_CONSO_ANN', 'ISUTI086-ISU_MDR_ECHE1_DETEC', 'ISUTI66K-ISU_IDENT_IBAN_ANONYM', 'ISUTI502-FICA_TRAN_PIEC_FIGL', 'ISUTI042B-ISU_OPTI_TURPE',
-			'ISUTI086-ISU_MDR_ECHE1_DETEC','ISUTI495-ISU_CALCUL_FACTURAT_ES','ISUTI66L-ISU_ANONYM_IBAN','NDEBJCHG','NDATE001-ISU_MAJ_ZDATE_NA']
+			categories: []
+			/* categories: ['ISUTI056-ISU_HIST_CONSO_ANN', 'ISUTI086-ISU_MDR_ECHE1_DETEC', 'ISUTI66K-ISU_IDENT_IBAN_ANONYM', 'ISUTI502-FICA_TRAN_PIEC_FIGL', 'ISUTI042B-ISU_OPTI_TURPE',
+			'ISUTI086-ISU_MDR_ECHE1_DETEC','ISUTI495-ISU_CALCUL_FACTURAT_ES','ISUTI66L-ISU_ANONYM_IBAN','NDEBJCHG','NDATE001-ISU_MAJ_ZDATE_NA'] */
 		},
 		labels: {
 			items: [{
@@ -1011,46 +1063,83 @@ $(function () {
 				}
 			}]
 		},
-		series: [{
+		series: [
+		{
 			type: 'column',
 			name: 'Heure de debut',
-			data: [4.32, 5.01, 6.10, 6.20, 6.06, 2.26, 1.00, 5.01, 9.52,6.02]
-		}, {
+			data: []
+		},
+		{
 			type: 'column',
+
 			name: 'Heure de fin',
-			data: [5.49, 5.05, 6.19, 6.28, 6.09, 4.32, 1.00, 5.34, 15.50,6.05]
-		}, {
+			data: []
+		},
+		{
 			type: 'spline',
 			name: 'Average',
-			data: [3, 2.67, 3, 6.33, 3.33, 25, 26, 27, 28, 29],
+			data: [],
 			marker: {
 				lineWidth: 2,
 				lineColor: Highcharts.getOptions().colors[3],
 				fillColor: 'white'
 			}
 		}, {
-			type: 'pie',
-			name: 'Total consumption',
-			data: [{
-				name: 'temps de debut',
-				y: 20,
-				color: Highcharts.getOptions().colors[0] // Jane's color
-			},  {
-				name: 'temps de fin',
-				y: 19,
-				color: Highcharts.getOptions().colors[2] // Joe's color
-			}],
-			center: [100, 80],
+
+
+			data: [],
+			center: [],
 			size: 100,
 			showInLegend: false,
 			dataLabels: {
 				enabled: false
 			}
 		}]
-	});
+	}
+
+	async function prettyGraph12() {
+
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/graph/graph/index7",
+    async : true,
+    success: function( response ) {
+            let dataParsed = JSON.parse(response)
+            let dataObj = Object.values(dataParsed[0])[0]
+            $.each(dataObj, function(key, val) {
+                let jobName = Object.keys(val)[0]
+                let durationJob = Object.values(val)[0]
+                let startTime = parseInt(durationJob.start.substring(11,13))
+                let endTime = parseInt(durationJob.end.substring(11,13))
+                optionJob.xAxis.categories.push(jobName)
+                optionJob.series[0].data.push(startTime)
+                optionJob.series[1].data.push(endTime)
+            })
+    }
+    })
+    return res;
+}
+async function displayGraph12() {
+        await prettyGraph12()
+}
+
+// display graph async execution with then
+displayGraph12().then(() => {
+          Highcharts.chart('chart12', optionJob);
+    })
+
+
+
+
+
+
+
 	// chart 13
 
-	let option = {
+    var categoriess = []
+    var datas = new Array();
+
+	var option = {
     chart: {
       zoomType: 'xy',
       styledMode: true
@@ -1066,7 +1155,7 @@ $(function () {
     },
     xAxis: [
       {
-        categories: [],
+        categories: categoriess,
         crosshair: true
       }
     ],
@@ -1074,7 +1163,7 @@ $(function () {
       {
         // Primary yAxis
         labels: {
-          format: '{value}H',
+          format: '{value: %H:%M:%S}',
           style: {
             color: Highcharts.getOptions().colors[1]
           }
@@ -1122,59 +1211,56 @@ $(function () {
         name: 'Durée de la NA en secondes',
         type: 'column',
         yAxis: 1,
-        data: [],
+        data: [12,13,14,15],
         tooltip: {
-          valueSuffix: ' S'
+          valueSuffix: ' '
         }
-      },
 
+      },
       {
         name: 'Durée de la NA en heure',
         type: 'spline',
-        data: [
-          18.26, 17.52, 18.23, 16.58, 17.12, 16.36, 19.57, 18.51, 18.24, 17.07,
-          16.42, 16.15
-        ],
+        data: [],
         tooltip: {
-          valueSuffix: 'H'
+          valueSuffix: ''
         }
       }
     ]
   };
-$.getJSON( "/../static/graph/plugins/highcharts/js/date_na.json", function( data ) {
-    var items = [];
-    console.log("entring the function get JSON Data ---")
-    $.each(JSON.parse(data), function (key, val) {
-      // value defininaha f data
-      console.log("my value : ", val)
-      console.log("my key : ", key)
-      items.push({key : key, date : val})
-      option.xAxis[0].categories.push(val);
-    });
-    console.log("my Final Log : ", items)
-    console.log("my Final Log on array options : ", option.xAxis[0].categories)
-    // items = option.xAxis[0].categories
-  });
+ //
+ var datase22 = []
 
-$.getJSON('/../static/graph/plugins/highcharts/js/durée_na.json', function async (data) {
-    var items2 = [];
-    console.log('entring the function get JSON Data ---');
-    $.each(JSON.parse(data), function (key, val) {
-      // value defininaha f data
-      items2.push({ key: key, durée: val });
-      console.log("item to push : ", val);
-      console.log(typeof val )
-      option.series[0].data.push(val);
-      console.log("is Pushed ? ", option.series[0].data.length > 0 ? true : false);
-    });
-    console.log('my Final Log on array options : ', option.series[0].data);
-    // items = option.xAxis[0].categories
-    console.log('mes données', data)
-  });
+async function prettyGraph13() {
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/graph/graph/index8",
+    async : true,
+    success: function( response ) {
+        var counter = 0
+        $.each(JSON.parse(response), function (key, val) {
+            $.each(val, function (key2, val2) {
+            const test = Date.parse(val2);
 
-  Highcharts.chart('chart13', option);
-  console.log('option.series[0] sans :>> ', option.series[0]);
-  console.log(typeof option.series[0].data );
+            categoriess.push(parseInt(key2.toString()))
+            datas.push(parseInt(val2))
+            datase22.push(val2.timestamp)
+            option.series[1].data = datas;
+            })
+        })
+    }
+    })
+    return res;
+}
+async function displayGraph13() {
+        await prettyGraph13()
+}
+
+// display graph async execution with then
+displayGraph13().then(() => {
+          Highcharts.chart('chart13', option);
+    })
+
+
 
 
 
@@ -1243,7 +1329,9 @@ $.getJSON('/../static/graph/plugins/highcharts/js/durée_na.json', function asyn
 
    */
 	// chart 15
-	Highcharts.chart('chart15', {
+	var datase15 = []
+	var option15 =
+	 {
 		chart: {
 			type: 'column',
 			styledMode: true
@@ -1253,6 +1341,7 @@ $.getJSON('/../static/graph/plugins/highcharts/js/durée_na.json', function asyn
 		},
 		title: {
 			text: 'Durée de la Na '
+
 		},
 		xAxis: {
 			categories: ['Na du jour', 'Na j-1', 'Na j-2', 'Na j-3']
@@ -1260,8 +1349,11 @@ $.getJSON('/../static/graph/plugins/highcharts/js/durée_na.json', function asyn
 		yAxis: {
 			min: 0,
 			title: {
-				text: 'Total fruit consumption'
+				text: 'Durée de la NA'
 			},
+			labels: {
+                format: '{value: %H:%M:%S}',
+            },
 			stackLabels: {
 				enabled: true,
 				style: {
@@ -1291,12 +1383,41 @@ $.getJSON('/../static/graph/plugins/highcharts/js/durée_na.json', function asyn
 				stacking: 'normal',
 				dataLabels: {
 					enabled: true
+
 				}
 			}
 		},
 		series: [{
-			name: 'durée de la Na en S',
-			data: [58856, 74939, 66400, 66400]
+			name: 'durée de la Na ',
+			data: []
 		},]
-	});
+	};
+	async function prettyGraph15() {
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/graph/graph/index9",
+    async : true,
+    success: function( response ) {
+        $.each(JSON.parse(response), function (key, val) {
+
+            datase15.push(parseInt(val))
+            option15.series[0].data = datase15;
+            })
+
+    }
+    })
+    return res;
+}
+async function displayGraph15() {
+        await prettyGraph15()
+}
+
+// display graph async execution with then
+displayGraph15().then(() => {
+          Highcharts.chart('chart15', option15);
+    })
+
+
+
 });
+

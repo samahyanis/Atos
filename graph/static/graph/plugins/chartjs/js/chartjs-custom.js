@@ -241,22 +241,16 @@ $(function () {
 		}
 	});
 	// chart 7
-	new Chart(document.getElementById("chart7"), {
+	let optionJob = {
 		type: 'horizontalBar',
 		data: {
-			labels: ["ISUTI056-ISU_HIST_CONSO_ANN", "ISUTI086-ISU_MDR_ECHE1_DETEC", "ISUTI66K-ISU_IDENT_IBAN_ANONYM", "ISUTI502-FICA_TRAN_PIEC_FIGL", "ISUTI042B-ISU_OPTI_TURPE","ISUTI086-ISU_MDR_ECHE1_DETEC","ISUTI495-ISU_CALCUL_FACTURAT_ES","ISUTI66L-ISU_ANONYM_IBAN","NDEBJCHG",
-			"NDATE001-ISU_MAJ_ZDATE_NA", "ISUTI50Q-ISU_PRE_ANLYSE_NA", "ISUTI02W-ISU_GO_NA_HORS_HEBDO", "ISUTI400-ISU_NO_GO_NACOMP", "ISUTI440-ISU_SPLIT4_D21", "ISUTI4A9-ISU_INT_IND_G",
-			"ISUTI411-ISU_CALCUL_FACTURAT", "ISUTI412-ISU_FACTURATION_ISU", "ISUTI071-ISU_INT_MODIF_CONT", "ISUTI025-ISU_ITF_GINKO14", "ISUTI62T-ISU_ITF_G14_GAZ","ISUTI420-ISU_ITF_GINKO13",
-			"ISUTI421-ISU_ITF_GINKO10","ISUTI40K-ISU_MDR_SOUSC_G","ISUTI054-FICA_RAPPROCHM_AUTO","ISUTI00Y-ISU_MDR_AF_PROC_PART","ISUTI069-FICA_CYCLE_RELANCE_PROP","ISUTI057-FICA_CYCLE_RELANCE_ACT",
-			"ISUTI01Z-ISU_PROG_AL_DFKKKOBW", "ISUTI01E-FICA_MARQ_CREAN_DOU","ISUTI01F-FICA_TRAN_CREAN_DOU","ISUTI065-FICA_ENCAISS_DECAISS1","ISUTI42V-EDIT_ISU_SP_B_NRJ_XML",
-			"ISUTI42W-EDIT_CONCAT_FACT_XML","EDITE673","EDITESGL","ISUTI018-ISU_PROG_MAJ_BP"],
+			labels: [],
 			datasets: [{
 				label: "Durée (Secondes)",
 				backgroundColor: ["#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7",, "#673ab7", "#673ab7", "#673ab7", "#673ab7"
 				, "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7"
 				, "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7", "#673ab7"],
-				data: [3680, 5268, 7345, 78441, 43312, 85214, 4589, 9865, 2500, 4521, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589, 4589
-				, 4539, 45452, 4239, 459, 489, 45639, 789, 4599, 45559]
+				data: []
 			}]
 		},
 		options: {
@@ -269,7 +263,37 @@ $(function () {
 				text: 'Durée execution job'
 			}
 		}
-	});
+	}
+	async function prettyGraph7() {
+
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://127.0.0.1:8000/graph/graph/index6",
+    async : true,
+    success: function( response ) {
+            let dataParsed = JSON.parse(response)
+            let dataObj = Object.values(dataParsed[0])[0]
+            $.each(dataObj, function(key, val){
+                let jobName = Object.keys(val)[0]
+                let durationJob = Object.values(val)[0]
+                optionJob.data.labels.push(jobName)
+                optionJob.data.datasets[0].data.push(parseInt(durationJob))
+            })
+    }
+    })
+    return res;
+}
+async function displayGraph7() {
+        await prettyGraph7()
+}
+
+// display graph async execution with then
+displayGraph7().then(() => {
+          new Chart(document.getElementById("chart7"), optionJob  )
+    })
+	new Chart(document.getElementById("chart7"), );
+
+
 	// chart 8
 	new Chart(document.getElementById("chart8"), {
 		type: 'bar',
