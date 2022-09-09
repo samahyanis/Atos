@@ -1,0 +1,902 @@
+{% include 'graph/header.html' %}
+<head>
+    	{% load static %}
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+</head>
+
+
+		<!--end navigation-->
+		<!--page-wrapper-->
+		<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+						<div class="breadcrumb-title pe-3">Analyse par mois Env : HO</div>
+						<div class="ps-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Na du : <span id="filename"></span></li>
+								</ol>
+							</nav>
+						</div>
+						<div class="ms-auto">
+							<div class="btn-group">
+								<a href="../index5">
+								<button type="button" class="btn btn-primary">Précédent</button>
+								</a>
+								<a href="../indextest">
+								<button type="button" class="btn btn-primary">Suivant</button>
+								</a>
+							</div>
+						</div>
+
+					</div>
+                    <script type="text/javascript">
+ var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+//alert(filename);
+  document.getElementById("filename").innerHTML = filename;
+  </script>
+
+
+<a  id="redirection2" >    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div></a>
+					<!--end breadcrumb-->
+					<script>
+function myFunction() {
+  var x = document.getElementById("hiden");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+}
+window.onload = myFunction;
+</script>
+				<div>
+					<div class="row">
+					<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart13"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div id="hiden">
+					<div class="row">
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart1"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart2"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart3"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart4"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart5"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 col-xl-6">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart6"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end row-->
+					<div class="row">
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart7"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart8"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart9"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart10"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart11"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart12"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart14"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div id="chart15"></div>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+
+
+
+
+					<!--end row-->
+				</div>
+                                                       <div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Analyse par programme</h5>
+							<hr/>
+							<div class="accordion accordion-flush" id="accordionFlushExample">
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="flush-headingOne">
+							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+								ISU
+							  </button>
+							</h2>
+									<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body"><div id="container1" style="min-width: 310px; height: 400px; margin: 0 auto"></div></div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="flush-headingTwo">
+							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+								CRM
+							  </button>
+							</h2>
+									<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body"><div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div></div>
+									</div>
+								</div>
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="flush-headingThree">
+							  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+								BI/ETL
+							  </button>
+							</h2>
+									<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body"><div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+			</div>
+		<!--end page-wrapper-->
+		<!--start overlay-->
+		<div class="overlay toggle-btn-mobile"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<!--footer -->
+		<div class="footer">
+			<p class="mb-0">Syndash @2020 | Developed By : <a href="https://themeforest.net/user/codervent" target="_blank">codervent</a>
+			</p>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- end wrapper -->
+	<!--start switcher-->
+	<div class="switcher-body">
+		<button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bx bx-cog bx-spin"></i></button>
+		<div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">
+		  <div class="offcanvas-header border-bottom">
+			<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+		  </div>
+		  <div class="offcanvas-body">
+			<h6 class="mb-0">Theme Variation</h6>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="lightmode" value="option1" checked>
+			  <label class="form-check-label" for="lightmode">Light</label>
+			</div>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="darkmode" value="option2">
+			  <label class="form-check-label" for="darkmode">Dark</label>
+			</div>
+			<hr>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="darksidebar" value="option3">
+				<label class="form-check-label" for="darksidebar">Semi Dark</label>
+			  </div>
+			  <hr>
+			 <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ColorLessIcons" value="option3">
+				<label class="form-check-label" for="ColorLessIcons">Color Less Icons</label>
+			  </div>
+		  </div>
+		</div>
+	   </div>
+
+
+            <script>
+    $('#redirection2').click(function(e){
+        	var datt = window.location.pathname.split("/")[4];
+        console.log(datt)
+        valeur = parseInt(e.pageX)
+        console.log(valeur)
+        if (valeur>=210 && valeur<=225){
+            window.location=  datt + '/' + '01' + datt
+        }
+
+         if (valeur>250 && valeur<=265)
+        {
+            window.location=  datt + '/' + '02' + datt
+        }
+        if (valeur>290 && valeur<=310)
+        {
+                 window.location=  datt + '/' + '03' +  datt
+
+        }
+        if (valeur>335 && valeur<=350)
+        {
+                 window.location=  datt + '/' + '04' + datt
+        }
+        if (valeur>375 && valeur<=390)
+        {
+                 window.location=  datt + '/' + '05' + datt
+        }
+        if (valeur>415 && valeur<=430)
+        {
+                 window.location=  datt + '/' + '06' + datt
+        }
+        if (valeur>455 && valeur<=470)
+        {
+                 window.location=  datt + '/' + '06' + datt
+        }
+        if (valeur>495 && valeur<=510)
+        {
+                 window.location=  datt + '/' + '08' + datt
+        }
+      if (valeur>535 && valeur<=550)
+        {
+    window.location=  datt + '/' + '09'  + datt
+
+        }
+      if (valeur>565 && valeur<=580)
+        {
+    window.location=  datt + '/' + '10'  + datt
+        }
+        if (valeur>605 && valeur<=620)
+        {
+                  window.location=  datt + '/' + '11' + datt
+
+        }
+        if (valeur>645 && valeur<=660)
+        {
+                        window.location=  datt + '/' + '12' + datt
+
+        }
+      if (valeur>685 && valeur<=700)
+        {
+                        window.location=  datt + '/' + '13'  + datt
+
+        }
+      if (valeur>725 && valeur<=740)
+        {
+    window.location=  datt + '/' + '14' + datt
+        }
+        if (valeur>765 && valeur<=780)
+        {
+    window.location=  datt + '/' + '15' + datt
+        }
+        if (valeur>805 && valeur<=820)
+        {
+    window.location=  datt + '/' + '16' + datt
+        }
+      if (valeur>845 && valeur<=860)
+        {
+      window.location=  datt + '/' + '17' + datt
+        }
+      if (valeur>885 && valeur<=900)
+        {
+      window.location=  datt + '/' + '18' + datt
+        }
+
+
+
+      if (valeur>925 && valeur<=940)
+        {
+      window.location=  datt + '/' + '19'  + datt
+        }
+
+
+
+      if (valeur>965 && valeur<=980)
+        {
+      window.location=  datt + '/' + '20' + datt
+        }
+
+
+
+      if (valeur>1005 && valeur<=1020)
+        {
+      window.location=  datt + '/' + '21'  + datt
+        }
+
+
+
+      if (valeur>1045 && valeur<=1060)
+        {
+      window.location=  datt + '/' +  '22' + datt
+        }
+
+
+
+      if (valeur>1085 && valeur<=1100)
+        {
+      window.location=  datt + '/' + '23' + datt
+        }
+
+
+    if (valeur>1125 && valeur<=1140)
+        {
+      window.location=  datt + '/' + '24'  + datt
+        }
+
+
+    if (valeur>1165 && valeur<=1180)
+        {
+      window.location=  datt + '/' + '25' + datt
+        }
+
+
+    if (valeur>1205 && valeur<=1220)
+        {
+      window.location=  datt + '/' + '26' + datt
+        }
+
+
+    if (valeur>1245 && valeur<=1260)
+        {
+      window.location=  datt + '/' + '27'  + datt
+        }
+
+
+    if (valeur>1285 && valeur<=1300)
+        {
+      window.location=  datt + '/' + '28'  + datt
+        }
+
+
+    if (valeur>1325 && valeur<=1340)
+        {
+      window.location=  datt + '/' + '29'  + datt
+        }
+
+    if (valeur>1365 && valeur<=1380)
+        {
+      window.location=  datt + '/' + '30'  + datt
+        }
+
+    if (valeur>1405 && valeur<=1420)
+        {
+      window.location=  datt + '/' + '31' + datt
+        }
+
+
+
+
+});
+</script>
+
+	   <!--end switcher-->
+	<!-- JavaScript -->
+	<!-- Bootstrap JS -->
+	<script src="{% static 'graph/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!--plugins-->
+	<script src="{% static 'graph/js/jquery.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!-- highcharts js -->
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-more.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/variable-pie.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/solid-gauge.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-3d.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/cylinder.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/funnel3d.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/exporting.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/export-data.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/accessibility.js' %}"></script>
+	<script src="{% static 'graph/plugins/highcharts/js/highcharts-custom.script.js' %}"></script>
+	<!-- App JS -->
+	<script src="{% static 'graph/js/app.js' %}"></script>
+ <script>
+     // graph ISU
+                        $(function () {
+
+var option111 = {
+        chart: {
+            type: 'column'
+        },
+        xAxis: {
+            categories: [
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                ]
+        },
+        yAxis: {
+            title: {
+                text: 'Time (hh:mm:ss)'
+            },
+            labels: {
+                formatter: function () {
+                    var time = this.value;
+                    var currentDate = new Date(time);
+                    var hours = currentDate.getHours();
+                    var mins = currentDate.getMinutes();
+                    var sec = currentDate.getSeconds();
+                    return hours + ':' + mins + ':' + sec;
+                    // return time;
+                }
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+
+			tooltip: {
+                formatter: function() {
+                    return  '<b>' + this.series.name +'</b><br/>' +
+                        Highcharts.dateFormat('%H:%M:%S',new Date(this.y))
+                }
+			},
+
+        series: [{
+            name: ' durée de la Na :',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+        }]
+
+    }
+
+    function sliceData (dataDate, dataHour) {
+    	// dataDate for the index slice (5, 7)
+		console.log(dataHour)
+		if (dataHour.length> 8){
+			dataHour = dataHour.substring(7)
+		}
+		console.log(dataHour)
+
+      let indexDate = dataDate.substring(0, 2)
+      let ms =
+        Number(dataHour.split(':')[0]) * 60 * 60 * 1000 + Number(dataHour.split(':')[1]) * 60 			* 1000 + Number(dataHour.split(':')[2]) * 1000;
+      option.series[0].data.splice(indexDate, 1, ms)
+
+      //option.series.data[indexDate].push(ms)
+    }
+
+    var dataForTest =
+    [
+
+    ]
+    //var dataDate = ["20220514", "20220516", "20220517", "20220522"]
+    //var dataHour =  ["14:50:04", "14:33:50"," 14:33:50", "16:50:04"]
+    var dataDate = []
+    var dataHour = []
+
+  async function prettyGraph111() {
+	console.log(window.location)
+	  var datt = window.location.pathname.split("/")[4];
+     await $.ajax({
+     type: "GET",
+     url: "http://127.0.0.1:8000/graph/filtre_/"+datt,
+     async : true,
+  success: function( response ) {
+         $.each(JSON.parse(response["ESMMTAV01"]), function (key, val) {
+             $.each(val, function (key2, val2) {
+             dataDate.push(key2)
+             dataHour.push(val2)
+             })
+
+         })
+          for (let i=0 ; i<dataDate.length ; i++ ) {
+    	    const date = dataDate[i];
+            sliceData(date,dataHour[i])
+        }
+        }
+
+})
+
+
+    }
+
+
+async function displayGraph111() {
+        await prettyGraph111()
+}
+displayGraph111().then(() => {
+           $('#container1').highcharts( option111);
+     })
+
+});
+// graph CRM
+
+                         $(function () {
+
+var option112 = {
+        chart: {
+            type: 'column'
+        },
+        xAxis: {
+            categories: [
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                ]
+        },
+        yAxis: {
+            title: {
+                text: 'Time (hh:mm:ss)'
+            },
+            labels: {
+                formatter: function () {
+                    var time = this.value;
+                    var currentDate = new Date(time);
+                    var hours = currentDate.getHours();
+                    var mins = currentDate.getMinutes();
+                    var sec = currentDate.getSeconds();
+                    return hours + ':' + mins + ':' + sec;
+                    // return time;
+                }
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+
+			tooltip: {
+                formatter: function() {
+                    return  '<b>' + this.series.name +'</b><br/>' +
+                        Highcharts.dateFormat('%H:%M:%S',new Date(this.y))
+                }
+			},
+
+        series: [{
+            name: ' durée de la Na :',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+        }]
+
+    }
+
+    function sliceData (dataDate, dataHour) {
+    	// dataDate for the index slice (5, 7)
+		console.log(dataHour)
+		if (dataHour.length> 8){
+			dataHour = dataHour.substring(7)
+		}
+		console.log(dataHour)
+
+      let indexDate = dataDate.substring(0, 2)
+      let ms =
+        Number(dataHour.split(':')[0]) * 60 * 60 * 1000 + Number(dataHour.split(':')[1]) * 60 			* 1000 + Number(dataHour.split(':')[2]) * 1000;
+      option.series[0].data.splice(indexDate, 1, ms)
+
+      //option.series.data[indexDate].push(ms)
+    }
+
+    var dataForTest =
+    [
+
+    ]
+    //var dataDate = ["20220514", "20220516", "20220517", "20220522"]
+    //var dataHour =  ["14:50:04", "14:33:50"," 14:33:50", "16:50:04"]
+    var dataDate = []
+    var dataHour = []
+
+  async function prettyGraph112() {
+	console.log(window.location)
+	  var datt = window.location.pathname.split("/")[4];
+     await $.ajax({
+     type: "GET",
+     url: "http://127.0.0.1:8000/graph/filtre_/"+datt,
+     async : true,
+  success: function( response ) {
+         $.each(JSON.parse(response["ESMMTAV01"]), function (key, val) {
+             $.each(val, function (key2, val2) {
+             dataDate.push(key2)
+             dataHour.push(val2)
+             })
+
+         })
+          for (let i=0 ; i<dataDate.length ; i++ ) {
+    	    const date = dataDate[i];
+            sliceData(date,dataHour[i])
+        }
+        }
+
+})
+
+
+    }
+
+
+async function displayGraph112() {
+        await prettyGraph112()
+}
+displayGraph112().then(() => {
+           $('#container2').highcharts( option112);
+     })
+
+});
+
+                         // graph BI/ETL
+
+     // graph CRM
+
+                         $(function () {
+
+var option113 = {
+        chart: {
+            type: 'column'
+        },
+        xAxis: {
+            categories: [
+                '01',
+                '02',
+                '03',
+                '04',
+                '05',
+                '06',
+                '07',
+                '08',
+                '09',
+                '10',
+                '11',
+                '12',
+                '13',
+                '14',
+                '15',
+                '16',
+                '17',
+                '18',
+                '19',
+                '20',
+                '21',
+                '22',
+                '23',
+                '24',
+                '25',
+                '26',
+                '27',
+                '28',
+                '29',
+                '30',
+                '31',
+                ]
+        },
+        yAxis: {
+            title: {
+                text: 'Time (hh:mm:ss)'
+            },
+            labels: {
+                formatter: function () {
+                    var time = this.value;
+                    var currentDate = new Date(time);
+                    var hours = currentDate.getHours();
+                    var mins = currentDate.getMinutes();
+                    var sec = currentDate.getSeconds();
+                    return hours + ':' + mins + ':' + sec;
+                    // return time;
+                }
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+
+			tooltip: {
+                formatter: function() {
+                    return  '<b>' + this.series.name +'</b><br/>' +
+                        Highcharts.dateFormat('%H:%M:%S',new Date(this.y))
+                }
+			},
+
+        series: [{
+            name: ' durée de la Na :',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+        }]
+
+    }
+
+    function sliceData (dataDate, dataHour) {
+    	// dataDate for the index slice (5, 7)
+		console.log(dataHour)
+		if (dataHour.length> 8){
+			dataHour = dataHour.substring(7)
+		}
+		console.log(dataHour)
+
+      let indexDate = dataDate.substring(0, 2)
+      let ms =
+        Number(dataHour.split(':')[0]) * 60 * 60 * 1000 + Number(dataHour.split(':')[1]) * 60 			* 1000 + Number(dataHour.split(':')[2]) * 1000;
+      option.series[0].data.splice(indexDate, 1, ms)
+
+      //option.series.data[indexDate].push(ms)
+    }
+
+    var dataForTest =
+    [
+
+    ]
+    //var dataDate = ["20220514", "20220516", "20220517", "20220522"]
+    //var dataHour =  ["14:50:04", "14:33:50"," 14:33:50", "16:50:04"]
+    var dataDate = []
+    var dataHour = []
+
+  async function prettyGraph113() {
+	console.log(window.location)
+	  var datt = window.location.pathname.split("/")[4];
+     await $.ajax({
+     type: "GET",
+     url: "http://127.0.0.1:8000/graph/filtre_/"+datt,
+     async : true,
+  success: function( response ) {
+         $.each(JSON.parse(response["ESMMTAV01"]), function (key, val) {
+             $.each(val, function (key2, val2) {
+             dataDate.push(key2)
+             dataHour.push(val2)
+             })
+
+         })
+          for (let i=0 ; i<dataDate.length ; i++ ) {
+    	    const date = dataDate[i];
+            sliceData(date,dataHour[i])
+        }
+        }
+
+})
+
+
+    }
+
+
+async function displayGraph113() {
+        await prettyGraph113()
+}
+displayGraph113().then(() => {
+           $('#container3').highcharts( option113);
+     })
+
+});
+
+
+                    </script>
+
+</body>
+
+
+<!-- Mirrored from codervent.com/syndash/demo/horizontal/charts-highcharts.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 31 May 2022 08:15:38 GMT -->
+</html>

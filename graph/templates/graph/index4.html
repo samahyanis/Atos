@@ -1,0 +1,169 @@
+{% include 'graph/header.html' %}
+<head>
+    	{% load static %}
+
+	<!--favicon-->
+
+	<!--plugins-->
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+
+
+
+
+
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+
+	<!-- Bootstrap CSS -->
+
+</head>
+<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+						<div class="breadcrumb-title pe-3"><span id="filename"></span></div>
+						<div class="ps-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Analyse du Job</li>
+								</ol>
+							</nav>
+						</div>
+						<div class="ms-auto">
+							<div class="btn-group">
+								<a href="../indextest">
+								<button type="button" class="btn btn-primary" >Précédent</button>
+								</a>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+					<!--end breadcrumb-->
+<script type="text/javascript">
+ var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+//alert(filename);
+  document.getElementById("filename").innerHTML = filename;
+  </script>
+					<div class="row">
+
+						<div class="col-12 col-lg-12 mx-auto">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="card-title">
+										<h4 class="mb-0">temps d'exécution du job</h4>
+									</div>
+									<hr/>
+									<div class="chart-container1">
+										<canvas id="chart1"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-12 mx-auto">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="card-title">
+										<h4 class="mb-0">Heure de debut et de fin du job</h4>
+									</div>
+									<hr/>
+									<div class="chart-container1">
+										<canvas id="chart2"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					<!--end row-->
+
+				</div>
+			</div>
+
+
+
+
+
+
+					<!--end row-->
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+		<!--start overlay-->
+		<div class="overlay toggle-btn-mobile"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<!--footer -->
+		<div class="footer">
+			<p class="mb-0">Run Hors-PROD @2022 | Developed By : <atarget="_blank">Atos</a>
+			</p>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- end wrapper -->
+	<!--start switcher-->
+	<div class="switcher-body">
+		<button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bx bx-cog bx-spin"></i></button>
+		<div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">
+		  <div class="offcanvas-header border-bottom">
+			<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+		  </div>
+		  <div class="offcanvas-body">
+			<h6 class="mb-0">Theme Variation</h6>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="lightmode" value="option1" checked>
+			  <label class="form-check-label" for="lightmode">Light</label>
+			</div>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="darkmode" value="option2">
+			  <label class="form-check-label" for="darkmode">Dark</label>
+			</div>
+			  <hr>
+			 <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ColorLessIcons" value="option3">
+				<label class="form-check-label" for="ColorLessIcons">Color Less Icons</label>
+			  </div>
+		  </div>
+		</div>
+	   </div>
+	   <!--end switcher-->
+	<!-- JavaScript -->
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'graph/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!--plugins-->
+	<script src="{% static 'graph/js/jquery.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!-- Vector map JavaScript -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1"></script>
+
+
+
+	<script src="{% static 'graph/plugins/chartjs/js/Chart.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/chartjs/js/chartjs-custom.js' %}"></script>
+	<script src="{% static 'graph/js/app.js' %}"></script>
+
+
+
+</body>
+
+
+<!-- Mirrored from codervent.com/syndash/demo/horizontal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 31 May 2022 08:10:53 GMT -->
+</html>

@@ -1,0 +1,58 @@
+<html>
+   <head>
+      <title>ChartJS v1  - Formatted times on y-axis</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.1.1/Chart.js"></script>
+      <script type="text/javascript">
+    window.onload=function(){/*from w w w .j  a va 2  s  .c  om*/
+$(document).ready(function() {
+
+		var data = {
+			labels: [],
+			datasets: [{
+				label: 'Temps exécution en secondes',
+				data: [198, 198, 254, 189, 248, 188, 186, 251],
+				backgroundColor: "transparent",
+				borderColor: "#673ab7",
+				pointRadius: "0",
+				borderWidth: 4
+			}, {
+				label: 'Moyenne exécution',
+				data: [10800, 10800, 10800, 10800, 10800, 10800, 10800],
+				backgroundColor: "transparent",
+				borderColor: "#32ab13",
+				pointRadius: "0",
+				borderWidth: 4
+			}]
+		}
+  var options = {
+    scaleOverride: true,
+    scaleSteps: 8,
+    scaleStepWidth: 1800,
+    scaleStartValue: 0,
+    responsive: true,
+    maintainAspectRatio: false,
+    scaleLabel: function(valuePayload) {
+       console.log(new Date(valuePayload.value  * 1000).toISOString());
+      return new Date(valuePayload.value  * 1000).toISOString().substr(12, 7);
+    },
+    multiTooltipTemplate: function(valuePayload) {
+      return valuePayload.datasetLabel + " " + new Date(valuePayload.value * 1000).toISOString().substr(12, 7)
+    },
+    title: {
+        display: false,
+        text: 'stat 1'
+    }
+  };
+  var ctx = document.getElementById("canvas").getContext("2d");
+  window.myLine = new Chart(ctx).Line(data, options);
+});
+    }
+
+      </script>
+   </head>
+   <body>
+      <canvas id="canvas" height="300" width="300"></canvas>
+   </body>
+</html>

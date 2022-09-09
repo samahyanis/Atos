@@ -1,0 +1,347 @@
+{% include 'graph/header.html' %}
+<head>
+    	{% load static %}
+
+	<!--favicon-->
+
+	<!--plugins-->
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+
+
+
+
+
+	<link href="{% static 'graph/plugins/highcharts/css/highcharts.css' %}" rel="stylesheet" />
+
+	<!-- Bootstrap CSS -->
+
+</head>
+<div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<br class="page-content-wrapper">
+				<div class="page-content">
+					<!--breadcrumb-->
+					<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+						<div class="breadcrumb-title pe-3"><span id="filename"></span></div>
+						<div class="ps-3">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb mb-0 p-0">
+									<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+									</li>
+									<li class="breadcrumb-item active" aria-current="page">Analyse du Job</li>
+								</ol>
+							</nav>
+						</div>
+						<div class="ms-auto">
+							<div class="btn-group">
+								<a href="../indextest">
+								<button type="button" class="btn btn-primary" >Précédent</button>
+								</a>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+					<!--end breadcrumb-->
+
+<div style="min-width: 310px; height: 400px; margin: 0 auto">
+
+
+    <canvas id="lawal"></canvas>
+</div>
+            </br>
+                <div style="min-width: 310px; height: 300px; margin: 0 auto">
+
+
+    <canvas id="zawaj"></canvas>
+</div>
+</div>
+</br>
+
+<script type="text/javascript">
+ var url = window.location.pathname;
+var filename = url.substring(url.lastIndexOf('/')+1);
+//alert(filename);
+  document.getElementById("filename").innerHTML = filename;
+  </script>
+
+
+                <script>
+                     $(function () {
+                    let chart_alexis = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [{
+				label: 'Temps exécution en secondes',
+				data: [],
+				backgroundColor: "transparent",
+				borderColor: "#673ab7",
+				pointRadius: "0",
+				borderWidth: 4
+			}, {
+				label: 'Moyenne exécution',
+				data: [10800, 10800, 10800, 10800, 10800, 10800, 10800],
+				backgroundColor: "transparent",
+				borderColor: "#32ab13",
+				pointRadius: "0",
+				borderWidth: 4
+			}]
+		},
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				labels: {
+					fontColor: '#585757',
+					boxWidth: 40
+				}
+			},
+			tooltips: {
+				enabled: false
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}]
+			}
+		}
+	};
+
+
+		async function prettyGraph1() {
+	var job_name = window.location.pathname.split("/")[5];
+	var journia = window.location.pathname.split("/")[4];
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://localhost:8000/graph/filter/"+ journia +  '/' + job_name,
+    async : true,
+    success: function( response ) {
+		console.log(response)
+       var ESMMTAV01 = response["ESMMTAV01"]
+            $.each(ESMMTAV01, function(key, val){
+                let start_time = Object.values(val)[0]
+                let end_time = Object.values(val)[1]
+                let date = Object.values(val)[2]
+                let dure = Object.values(val)[3]
+				   chart_alexis.data.labels.push(date)
+                chart_alexis.data.datasets[0].data.push(dure.substring(3,4))
+            })
+		console.log(chart_alexis.data.datasets[0].data)
+    }
+    })
+    return res;
+}
+async function displayGraph1() {
+        await prettyGraph1()
+}
+displayGraph1().then(() => {
+          new Chart(document.getElementById("lawal"), chart_alexis  )
+    })
+                    });
+                </script>
+
+                <script>
+                    $(function () {
+                    var ctx = document.getElementById("zawaj").getContext('2d');
+
+	let djafer_graph = {
+		type: 'bar',
+		data: {
+			labels: [],
+			datasets: [{
+				label: 'Date de debut',
+				data: [141132, 141132, 141132, 141132, 141132, 141132, 141132],
+				barPercentage: .5,
+				backgroundColor: "#673ab7"
+			}, {
+				label: 'date de fin',
+				data: [173205, 173205, 173205, 173205, 173205, 173205, 173205],
+				barPercentage: .5,
+				backgroundColor: "#bf9bff"
+			}]
+		},
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				labels: {
+					fontColor: '#585757',
+					boxWidth: 40
+				}
+			},
+			tooltips: {
+				enabled: true
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}]
+			}
+		}
+	};
+
+			async function prettyGraph2() {
+	var job_name = window.location.pathname.split("/")[5];
+	var journia = window.location.pathname.split("/")[4];
+
+
+    const res = await $.ajax({
+    type: "GET",
+    url: "http://localhost:8000/graph/filter/"+ journia +  '/' + job_name,
+    async : true,
+    success: function( response ) {
+		console.log(response)
+           	var ESMMTAV01 = response["ESMMTAV01"]
+
+            $.each(ESMMTAV01, function(key, val){
+                let start_time = Object.values(val)[0]
+                let end_time = Object.values(val)[1]
+                let date = Object.values(val)[2]
+                let dure = Object.values(val)[3]
+				djafer_graph.data.labels.push(date)
+                djafer_graph.data.datasets[0].data.push(start_time)
+                djafer_graph.data.datasets[1].data.push(end_time)
+
+
+
+            })
+    }
+    })
+    return res;
+}
+async function displayGraph2() {
+        await prettyGraph2()
+}
+
+
+displayGraph2().then(() => {
+          new Chart(document.getElementById("zawaj"), djafer_graph)
+    })
+ });
+                </script>
+
+					<!--end row-->
+
+				</div>
+			</div>
+
+
+
+
+
+
+					<!--end row-->
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+		<!--end page-wrapper-->
+		<!--start overlay-->
+		<div class="overlay toggle-btn-mobile"></div>
+		<!--end overlay-->
+		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+		<!--End Back To Top Button-->
+		<!--footer -->
+		<div class="footer">
+			<p class="mb-0">Run Hors-PROD @2022 | Developed By : <atarget="_blank">Atos</a>
+			</p>
+		</div>
+		<!-- end footer -->
+	</div>
+	<!-- end wrapper -->
+	<!--start switcher-->
+	<div class="switcher-body">
+		<button class="btn btn-primary btn-switcher shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling"><i class="bx bx-cog bx-spin"></i></button>
+		<div class="offcanvas offcanvas-end shadow border-start-0 p-2" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling">
+		  <div class="offcanvas-header border-bottom">
+			<h5 class="offcanvas-title" id="offcanvasScrollingLabel">Theme Customizer</h5>
+			<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+		  </div>
+		  <div class="offcanvas-body">
+			<h6 class="mb-0">Theme Variation</h6>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="lightmode" value="option1" checked>
+			  <label class="form-check-label" for="lightmode">Light</label>
+			</div>
+			<hr>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="darkmode" value="option2">
+			  <label class="form-check-label" for="darkmode">Dark</label>
+			</div>
+			  <hr>
+			 <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="inlineRadioOptions" id="ColorLessIcons" value="option3">
+				<label class="form-check-label" for="ColorLessIcons">Color Less Icons</label>
+			  </div>
+		  </div>
+		</div>
+	   </div>
+	   <!--end switcher-->
+	<!-- JavaScript -->
+
+	<!-- Bootstrap JS -->
+	<script src="{% static 'graph/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!--plugins-->
+	<script src="{% static 'graph/js/jquery.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/simplebar/js/simplebar.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/metismenu/js/metisMenu.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/perfect-scrollbar/js/perfect-scrollbar.js' %}"></script>
+	<!-- Vector map JavaScript -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@^3"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1"></script>
+
+
+
+	<script src="{% static 'graph/plugins/chartjs/js/Chart.min.js' %}"></script>
+	<script src="{% static 'graph/plugins/chartjs/js/chartjs-custom.js' %}"></script>
+	<script src="{% static 'graph/js/app.js' %}"></script>
+
+
+
+</body>
+
+
+<!-- Mirrored from codervent.com/syndash/demo/horizontal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 31 May 2022 08:10:53 GMT -->
+</html>
